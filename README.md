@@ -30,23 +30,28 @@ The script uses Windows' .NET Framework compiler and builds and tests:
 - `CaptureWorker.exe`: capture process; keep it in the same directory as the main application
 - `qa/`: local test programs and outputs, excluded from Git
 
-Double-click `WorkCalendar.exe`. In the current Chinese interface, open Capture Settings (`采集设置`), enter your name or group-chat nickname, and configure the provider's API URL, model name, and API key. Click Test Cloud Connection (`测试云端连接`), enable cloud analysis and save after a successful test, then click Start Recording (`开始记录`).
+The current application interface is in Chinese. The control names below are translated into English for reference.
+
+1. Double-click `WorkCalendar.exe` and open **Capture Settings**.
+2. Enter your name or group-chat nickname, then configure the provider's API URL, model name, and API key.
+3. Select **Test Cloud Connection**. After a successful test, enable cloud analysis and save the settings.
+4. Select **Start Recording**.
 
 The API setting accepts a base URL such as `https://api.example.com/v1` or a complete `/chat/completions` endpoint. The example domain is not a working service; configure your own provider. This repository contains no real account configuration or credentials. Local time parsing, the calendar, manual entry, and reminders remain available with cloud analysis disabled.
 
-Automatic recording samples every 8 seconds. Press `Ctrl + Alt + Space` in a work window to capture it once. Closing the main window leaves the application in the system tray. Choose Quit (`彻底退出`) from the tray menu or settings to stop the application.
+Automatic recording samples every 8 seconds. Press `Ctrl + Alt + Space` in a work window to capture it once. Closing the main window leaves the application in the system tray. Select **Quit** from the tray menu or settings to stop the application.
 
 ## Example behavior
 
-All examples below are fictional. The local parser currently targets Chinese; the English column explains each sample rather than claiming support for English input.
+The scenarios below are English descriptions of fictional Chinese messages. The local parser currently recognizes Chinese input; these descriptions illustrate its behavior and are not supported English test inputs.
 
-| Sample input | English meaning | Result |
-| --- | --- | --- |
-| `明天下午三点开会` | Meeting tomorrow at 3 p.m. | With a trusted message date, creates an event for tomorrow at 15:00 and reminds 15 minutes beforehand by default |
-| `明天下午拉会` | Arrange a meeting tomorrow afternoon | Records tomorrow with the exact time unresolved and schedules a review reminder |
-| `会议改成下午四点` | Move the meeting to 4 p.m. | Updates the original meeting when the message time is trusted and the target in the same conversation is clear |
-| `会议取消了` | The meeting is cancelled | Associates the message with the original event, removes it from the calendar, and keeps the evidence and undo history |
-| `报告已经发给客户` | The report has been sent to the client | Marks a clearly matched task as complete; the progress can also be recorded in work memory |
+| Scenario | Result |
+| --- | --- |
+| A meeting is scheduled for tomorrow at 3 p.m. | With a trusted message date, creates an event for tomorrow at 15:00 and reminds 15 minutes beforehand by default |
+| A meeting is requested for tomorrow afternoon, without an exact time. | Records tomorrow with the exact time unresolved and schedules a review reminder |
+| An existing meeting is moved to 4 p.m. | Updates the original meeting when the message time is trusted and the target in the same conversation is clear |
+| An existing meeting is cancelled. | Associates the message with the original event, removes it from the calendar, and keeps the evidence and undo history |
+| A report has been sent to the client. | Marks a clearly matched task as complete; the progress can also be recorded in work memory |
 
 Screen text without a message date may be historical. It does not become a trusted exact-time reminder automatically, and the application does not turn an unspecified afternoon into 15:00. Rescheduling or cancellation with an unclear target goes to the review list.
 

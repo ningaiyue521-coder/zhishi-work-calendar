@@ -1,0 +1,26 @@
+# Source-only repository. Runtime data and build outputs stay local.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/build.ps1
+!/src/
+/src/*
+!/src/App.cs
+!/src/CapturePolicy.cs
+!/src/CaptureWorker.cs
+!/src/Cloud.cs
+!/src/Core.cs
+!/src/MainWindow.xaml
+!/src/Workflow.cs
+!/src/app.manifest
+!/tests/
+/tests/*
+!/tests/CoreTests.cs
+!/tests/WorkflowTests.cs
+!/tests/TestMessage.cs
+!/tests/PipelineLauncher.cs
+!/tests/DemoLauncher.cs
+!/scripts/
+/scripts/*
+!/scripts/Test-PublishSafety.ps1
